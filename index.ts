@@ -1,11 +1,8 @@
 import { BIP32Interface } from "bip32";
 import * as bitcoin from 'bitcoinjs-lib';
 import bitcoinMessage from 'bitcoinjs-message';
-import {payments} from "bitcoinjs-lib";
-import p2pkh = payments.p2pkh;
 
 const defaultPathSegwit = "m/84'/0'/0'/0/0";
-
 
 async function signBitcoinSegwitKey({ signMessage, root }: { signMessage: string, root: BIP32Interface }) {
     const childSegwit = root.derivePath(defaultPathSegwit);
