@@ -55,7 +55,7 @@ function signBitcoinSegwitKey({ signMessage, root }) {
             address,
             signature,
             messagePrefix,
-            signMessage,
+            message: signMessage,
             magicHash,
         };
     });

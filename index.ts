@@ -22,7 +22,7 @@ async function signBitcoinSegwitKey({ signMessage, root }: { signMessage: string
         signature,
 
         messagePrefix,
-        signMessage,
+        message: signMessage,
         magicHash,
     };
 }

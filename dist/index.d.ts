@@ -9,7 +9,7 @@ declare function signBitcoinSegwitKey({ signMessage, root }: {
     address: string | undefined;
     signature: Buffer;
     messagePrefix: string | undefined;
-    signMessage: string;
+    message: string;
     magicHash: Buffer;
 }>;
 export { signBitcoinSegwitKey };
