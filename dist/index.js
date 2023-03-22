@@ -35,11 +35,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.signBitcoinSegwitKey = void 0;
+exports.signBitcoinSegwitPrivateKey = exports.signBitcoinSegwitRoot = void 0;
 const bitcoin = __importStar(require("bitcoinjs-lib"));
 const bitcoinjs_message_1 = __importDefault(require("bitcoinjs-message"));
 const defaultPathSegwit = "m/84'/0'/0'/0/0";
-function signBitcoinSegwitKey({ signMessage, root }) {
+function signBitcoinSegwitRoot({ signMessage, root }) {
     return __awaiter(this, void 0, void 0, function* () {
         const childSegwit = root.derivePath(defaultPathSegwit);
         const keyPair = bitcoin.ECPair.fromWIF(childSegwit.toWIF());
@@ -60,4 +60,24 @@ function signBitcoinSegwitKey({ signMessage, root }) {
         };
     });
 }
-exports.signBitcoinSegwitKey = signBitcoinSegwitKey;
+exports.signBitcoinSegwitRoot = signBitcoinSegwitRoot;
+function signBitcoinSegwitPrivateKey({ signMessage, privateKey }) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const keyPair = bitcoin.ECPair.fromWIF(privateKey);
+        const pubKey = keyPair.publicKey;
+        const signature = bitcoinjs_message_1.default.sign(signMessage, keyPair.privateKey, keyPair.compressed);
+        const { address, network } = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey });
+        const messagePrefix = network === null || network === void 0 ? void 0 : network.messagePrefix;
+        const magicHash = bitcoinjs_message_1.default.magicHash(signMessage);
+        return {
+            privateKey,
+            pubKey,
+            address,
+            signature,
+            messagePrefix,
+            message: signMessage,
+            magicHash,
+        };
+    });
+}
+exports.signBitcoinSegwitPrivateKey = signBitcoinSegwitPrivateKey;

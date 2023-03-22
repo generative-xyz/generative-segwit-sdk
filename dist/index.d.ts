@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { BIP32Interface } from "bip32";
-declare function signBitcoinSegwitKey({ signMessage, root }: {
+declare function signBitcoinSegwitRoot({ signMessage, root }: {
     signMessage: string;
     root: BIP32Interface;
 }): Promise<{
@@ -12,4 +12,16 @@ declare function signBitcoinSegwitKey({ signMessage, root }: {
     message: string;
     magicHash: Buffer;
 }>;
-export { signBitcoinSegwitKey };
+declare function signBitcoinSegwitPrivateKey({ signMessage, privateKey }: {
+    signMessage: string;
+    privateKey: string;
+}): Promise<{
+    privateKey: string;
+    pubKey: Buffer;
+    address: string | undefined;
+    signature: Buffer;
+    messagePrefix: string | undefined;
+    message: string;
+    magicHash: Buffer;
+}>;
+export { signBitcoinSegwitRoot, signBitcoinSegwitPrivateKey };
