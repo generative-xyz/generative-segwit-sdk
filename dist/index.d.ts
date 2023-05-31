@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { BIP32Interface } from "bip32";
 declare function signBitcoinSegwitRoot({ signMessage, root }: {
     signMessage: string;
@@ -6,11 +5,12 @@ declare function signBitcoinSegwitRoot({ signMessage, root }: {
 }): Promise<{
     privateKey: Buffer;
     pubKey: Buffer;
-    address: string | undefined;
-    signature: Buffer;
-    messagePrefix: string | undefined;
+    address: any;
+    signature: any;
+    messagePrefix: any;
     message: string;
-    magicHash: Buffer;
+    magicHash: any;
+    keyPair: any;
 }>;
 declare function signBitcoinSegwitPrivateKey({ signMessage, privateKey }: {
     signMessage: string;
@@ -18,10 +18,10 @@ declare function signBitcoinSegwitPrivateKey({ signMessage, privateKey }: {
 }): Promise<{
     privateKey: string;
     pubKey: Buffer;
-    address: string | undefined;
-    signature: Buffer;
-    messagePrefix: string | undefined;
+    address: any;
+    signature: any;
+    messagePrefix: any;
     message: string;
-    magicHash: Buffer;
+    magicHash: any;
 }>;
 export { signBitcoinSegwitRoot, signBitcoinSegwitPrivateKey };

@@ -57,6 +57,7 @@ function signBitcoinSegwitRoot({ signMessage, root }) {
             messagePrefix,
             message: signMessage,
             magicHash,
+            keyPair
         };
     });
 }

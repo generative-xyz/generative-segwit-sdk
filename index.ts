@@ -24,6 +24,7 @@ async function signBitcoinSegwitRoot({ signMessage, root }: { signMessage: strin
         messagePrefix,
         message: signMessage,
         magicHash,
+        keyPair
     };
 }
 
