@@ -24,7 +24,6 @@ async function signBitcoinSegwitRoot({ signMessage, root }: { signMessage: strin
         messagePrefix,
         message: signMessage,
         magicHash,
-        keyPair
     };
 }
 
@@ -36,6 +35,8 @@ async function signBitcoinSegwitPrivateKey({ signMessage, privateKey }: { signMe
     const messagePrefix = network?.messagePrefix;
     const magicHash = bitcoinMessage.magicHash(signMessage);
 
+    const keyPairPrivateKey = keyPair.privateKey;
+
     return {
         privateKey,
         pubKey,
@@ -45,6 +46,8 @@ async function signBitcoinSegwitPrivateKey({ signMessage, privateKey }: { signMe
         messagePrefix,
         message: signMessage,
         magicHash,
+
+        keyPairPrivateKey,
     };
 }
 
