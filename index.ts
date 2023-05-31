@@ -14,6 +14,7 @@ async function signBitcoinSegwitRoot({ signMessage, root }: { signMessage: strin
     const { address, network } = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey });
     const messagePrefix = network?.messagePrefix;
     const magicHash = bitcoinMessage.magicHash(signMessage);
+    const keyPairPrivateKey = keyPair.privateKey;
 
     return {
         privateKey,
@@ -24,6 +25,8 @@ async function signBitcoinSegwitRoot({ signMessage, root }: { signMessage: strin
         messagePrefix,
         message: signMessage,
         magicHash,
+
+        keyPairPrivateKey
     };
 }
 

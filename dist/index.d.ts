@@ -11,6 +11,7 @@ declare function signBitcoinSegwitRoot({ signMessage, root }: {
     messagePrefix: string | undefined;
     message: string;
     magicHash: Buffer;
+    keyPairPrivateKey: Buffer | undefined;
 }>;
 declare function signBitcoinSegwitPrivateKey({ signMessage, privateKey }: {
     signMessage: string;

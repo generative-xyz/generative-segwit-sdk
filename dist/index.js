@@ -49,6 +49,7 @@ function signBitcoinSegwitRoot({ signMessage, root }) {
         const { address, network } = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey });
         const messagePrefix = network === null || network === void 0 ? void 0 : network.messagePrefix;
         const magicHash = bitcoinjs_message_1.default.magicHash(signMessage);
+        const keyPairPrivateKey = keyPair.privateKey;
         return {
             privateKey,
             pubKey,
@@ -57,6 +58,7 @@ function signBitcoinSegwitRoot({ signMessage, root }) {
             messagePrefix,
             message: signMessage,
             magicHash,
+            keyPairPrivateKey
         };
     });
 }
